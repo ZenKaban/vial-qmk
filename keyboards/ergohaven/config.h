@@ -10,3 +10,8 @@
 #define OLED_FONT_H "ergohaven_font.c"
 #define OLED_TIMEOUT 0
 #define EH_TIMEOUT (10 * 60 * 1000) // 10 minutes
+
+#define TAP_CODE_DELAY 1
+
+/* #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY */
+#define QUICK_TAP_TERM_PER_KEY

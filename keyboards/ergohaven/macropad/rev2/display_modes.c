@@ -30,12 +30,16 @@ void display_init_screens_kb(void) {
     eh_screen_volume.init();
     current_screen      = eh_screen_splash;
     change_screen_state = SCREEN_SPLASH;
+    screen_state        = SCREEN_SPLASH;
+    current_screen.load();
+    display_turn_on();
+    screen_timer = timer_read32();
 }
 
 void display_housekeeping_task(void) {
     if (!is_display_enabled()) return;
 
-    static uint8_t prev_layer = 255;
+    static uint8_t prev_layer = 0;
     uint8_t        layer      = get_current_layer();
     if (layer != prev_layer) {
         prev_layer          = layer;
@@ -45,7 +49,7 @@ void display_housekeeping_task(void) {
 
     hid_data_t *hid_data   = get_hid_data();
     bool        hid_active = is_hid_active();
-    if (hid_data->hid_changed) {
+    if (hid_active && hid_data->hid_changed) {
         if (hid_data->volume_changed) {
             change_screen_state = SCREEN_VOLUME;
             screen_timer        = timer_read32();
@@ -64,13 +68,13 @@ void display_housekeeping_task(void) {
 
         switch (screen_state) {
             case SCREEN_SPLASH:
-                if (screen_elapsed > 2 * 1000) {
+                if (screen_elapsed > EH_DISPLAY_TIMEOUT_SPLASH_SCREEN) {
                     change_screen_state = SCREEN_LAYOUT;
                 }
                 break;
 
             case SCREEN_LAYOUT:
-                if (hid_active && activity_elapsed > 10 * 1000) {
+                if (hid_active && activity_elapsed > EH_DISPLAY_TIMEOUT_ACTIVITY) {
                     change_screen_state = SCREEN_HOME;
                 } else if (activity_elapsed > EH_TIMEOUT) {
                     change_screen_state = SCREEN_OFF;
@@ -80,13 +84,13 @@ void display_housekeeping_task(void) {
             case SCREEN_HOME:
                 if (!hid_active) {
                     change_screen_state = SCREEN_LAYOUT;
-                } else if (activity_elapsed > EH_TIMEOUT && screen_elapsed > 10 * 1000) {
+                } else if (activity_elapsed > EH_TIMEOUT && screen_elapsed > EH_DISPLAY_TIMEOUT_ACTIVITY) {
                     change_screen_state = SCREEN_OFF;
                 }
                 break;
 
             case SCREEN_VOLUME:
-                if (screen_elapsed > 1 * 1000) {
+                if (screen_elapsed > EH_DISPLAY_TIMEOUT_VOLUME_SCREEN) {
                     change_screen_state = SCREEN_HOME;
                 }
                 break;
@@ -124,6 +128,7 @@ void display_housekeeping_task(void) {
                 break;
         }
         current_screen.load();
+        return;
     }
 
     current_screen.housekeep();

@@ -23,6 +23,7 @@
 #include "timer.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include "quantum.h"
 
 #define CONSTRAIN_HID(amt) ((amt) < INT8_MIN ? INT8_MIN : ((amt) > INT8_MAX ? INT8_MAX : (amt)))
 #define CONSTRAIN_HID_XY(amt) ((amt) < XY_REPORT_MIN ? XY_REPORT_MIN : ((amt) > XY_REPORT_MAX ? XY_REPORT_MAX : (amt)))
@@ -165,8 +166,8 @@ report_mouse_t azoteq_iqs5xx_get_report(report_mouse_t mouse_report) {
                 pd_dprintf("IQS5XX - Single tap/hold.\n");
                 temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, POINTING_DEVICE_BUTTON1);
             } else if (base_data.gesture_events_1.two_finger_tap) {
-                pd_dprintf("IQS5XX - Two finger tap.\n");
-                if (base_data.previous_cycle_time == 10) // this fixes weird bug with two extra clicks
+                pd_dprintf("IQS5XX - Two finger tap cycle_time=%d.\n", base_data.previous_cycle_time);
+                if (base_data.previous_cycle_time != 0) // this fixes weird bug with two extra clicks
                     temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, POINTING_DEVICE_BUTTON2);
             } else if (base_data.gesture_events_0.swipe_x_neg) {
                 pd_dprintf("IQS5XX - X-.\n");
@@ -187,9 +188,11 @@ report_mouse_t azoteq_iqs5xx_get_report(report_mouse_t mouse_report) {
             } else if (base_data.gesture_events_1.zoom) {
                 if (AZOTEQ_IQS5XX_COMBINE_H_L_BYTES(base_data.x.h, base_data.x.l) < 0) {
                     pd_dprintf("IQS5XX - Zoom out.\n");
+                    tap_code16(C(KC_MINUS));
                     temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, POINTING_DEVICE_BUTTON7);
                 } else if (AZOTEQ_IQS5XX_COMBINE_H_L_BYTES(base_data.x.h, base_data.x.l) > 0) {
                     pd_dprintf("IQS5XX - Zoom in.\n");
+                    tap_code16(C(KC_EQL));
                     temp_report.buttons = pointing_device_handle_buttons(temp_report.buttons, true, POINTING_DEVICE_BUTTON8);
                 }
             } else if (base_data.gesture_events_1.scroll) {

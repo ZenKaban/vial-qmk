@@ -33,8 +33,11 @@ QUANTUM_PAINTER_ENABLE = yes
 QUANTUM_PAINTER_DRIVERS += st7789_spi
 QUANTUM_PAINTER_LVGL_INTEGRATION = yes
 RAW_ENABLE = yes
-# CONSOLE_ENABLE = yes
-# DEBUG_MATRIX_SCAN_RATE  = yes
+BACKLIGHT_ENABLE = yes
+BACKLIGHT_DRIVER = pwm
+
+UNICODE_COMMON = yes
+UNICODE_ENABLE = yes
 
 SRC += keyboards/ergohaven/ergohaven_rgb.c
 SRC += keyboards/ergohaven/ergohaven_main.c

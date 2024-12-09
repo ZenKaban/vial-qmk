@@ -29,6 +29,7 @@ jobs:
       - name: Configure
         run: |
           sudo apt-get install rename
+          /usr/bin/python3 -m pip install -r /__w/vial-qmk/vial-qmk/requirements.txt
 
       - name: Rename
         run: |

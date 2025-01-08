@@ -1,9 +1,5 @@
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0xF1, 0xB3, 0x4C, 0x68, 0x6C, 0x25, 0xF1, 0x53}
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
-#define VIAL_UNLOCK_COMBO_COLS { 5, 4 }
-
 #define BOOTMAGIC_LITE_ROW          0
 #define BOOTMAGIC_LITE_COLUMN       5
 #define BOOTMAGIC_LITE_ROW_RIGHT    5
@@ -23,12 +19,19 @@
 #define I2C1_SDA_PIN        GP2
 #define OLED_BRIGHTNESS 128
 #define I2C_DRIVER I2CD1
-#define SPLIT_OLED_ENABLE
 #define SPLIT_MODS_ENABLE
+#define SPLIT_ACTIVITY_ENABLE
 #define SPLIT_LED_STATE_ENABLE
+#define SPLIT_OLED_ENABLE
 #endif
 
-#define RGBLED_NUM 2
+/* split protocol settings */
+#define SELECT_SOFT_SERIAL_SPEED 1
+#define SPLIT_WPM_ENABLE
+#define WPM_UNFILTERED
+#define SPLIT_TRANSACTION_IDS_USER RPC_SYNC_CONFIG, RPC_SYNC_HID
+
+#define RGBLIGHT_LED_COUNT 2
 #define RGBLED_SPLIT {1, 1}
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_SPLIT
@@ -40,5 +43,8 @@
 #define RGBLIGHT_DEFAULT_SAT 0
 
 #define TAP_CODE_DELAY 1
+<<<<<<< HEAD
 
 #define QUICK_TAP_TERM_PER_KEY
+=======
+>>>>>>> 063626619a6d56dab425ece9e4d5cc677307d205

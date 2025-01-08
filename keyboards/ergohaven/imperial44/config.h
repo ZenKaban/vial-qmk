@@ -1,9 +1,5 @@
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x77, 0x36, 0x5B, 0xB5, 0xC2, 0xEF, 0xFD, 0x25}
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
-#define VIAL_UNLOCK_COMBO_COLS { 5, 4 }
-
 #define BOOTMAGIC_LITE_ROW          0
 #define BOOTMAGIC_LITE_COLUMN       5
 #define BOOTMAGIC_LITE_ROW_RIGHT    4
@@ -23,12 +19,19 @@
 #define I2C1_SDA_PIN        GP2
 #define OLED_BRIGHTNESS 128
 #define I2C_DRIVER I2CD1
-#define SPLIT_OLED_ENABLE
 #define SPLIT_MODS_ENABLE
+#define SPLIT_ACTIVITY_ENABLE
 #define SPLIT_LED_STATE_ENABLE
+#define SPLIT_OLED_ENABLE
 #endif
 
-#define RGBLED_NUM 2
+/* split protocol settings */
+#define SELECT_SOFT_SERIAL_SPEED 1
+#define SPLIT_WPM_ENABLE
+#define WPM_UNFILTERED
+#define SPLIT_TRANSACTION_IDS_USER RPC_SYNC_CONFIG, RPC_SYNC_HID
+
+#define RGBLIGHT_LED_COUNT 2
 #define RGBLED_SPLIT {1, 1}
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_SPLIT
@@ -41,5 +44,5 @@
 
 #define TAP_CODE_DELAY 1
 
-/* #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY */
 #define QUICK_TAP_TERM_PER_KEY
+#define EH_SHORT_PRODUCT_NAME "I44"

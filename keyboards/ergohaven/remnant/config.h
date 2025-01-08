@@ -18,9 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x8D, 0x57, 0x95, 0x93, 0xF2, 0x7A, 0x1A, 0x8E}
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
 #define DYNAMIC_KEYMAP_LAYER_COUNT 16
 #define DYNAMIC_KEYMAP_MACRO_COUNT 109
 
@@ -34,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SERIAL_USART_RX_PIN GP1
 #define USB_VBUS_PIN        GP28
 #define SPLIT_HAND_PIN      GP24
-#define RGBLED_NUM 58
+#define RGBLIGHT_LED_COUNT 58
 #define WS2812_PIO_USE_PIO1
 
 #define BOOTMAGIC_LITE_ROW          0
@@ -107,4 +104,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif
-

@@ -4,23 +4,15 @@
     "maintainer": "Ergohaven",
     "bootloader": "rp2040",
     "diode_direction": "COL2ROW",
-    "features": {
-        "bootmagic": true,
-        "command": false,
-        "console": false,
-        "extrakey": true,
-        "mousekey": true,
-        "nkro": true
-    },
     "matrix_pins": {
-        "cols": ["GP12", "GP11", "GP10", "GP9", "GP8", "GP7"],
-        "rows": ["GP5", "GP4", "GP3", "GP2"]
+        "cols": ["GP11", "GP12", "GP13", "GP14", "GP15"],
+        "rows": ["GP19", "GP18", "GP17", "GP16"]
     },
     "processor": "RP2040",
     "url": "https://ergohaven.xyz/",
     "usb": {
-        "vid": "0xFEED",
-        "pid": "0x2793",
+        "vid": "0xE126",
+        "pid": "0x0060",
         "device_version": "1.0.0"
     },
     "layouts": {

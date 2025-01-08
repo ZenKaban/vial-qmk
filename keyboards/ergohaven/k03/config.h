@@ -43,8 +43,4 @@
 #define RGBLIGHT_DEFAULT_SAT 0
 
 #define TAP_CODE_DELAY 1
-<<<<<<< HEAD
-
 #define QUICK_TAP_TERM_PER_KEY
-=======
->>>>>>> 063626619a6d56dab425ece9e4d5cc677307d205

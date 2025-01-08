@@ -15,6 +15,13 @@
 #define OLED_TIMEOUT 0
 #define EH_TIMEOUT (10 * 60 * 1000) // 10 minutes
 
+<<<<<<< HEAD
 #ifdef CONSOLE_ENABLE
 #    undef NO_DEBUG
 #endif
+=======
+#define TAP_CODE_DELAY 1
+
+/* #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY */
+#define QUICK_TAP_TERM_PER_KEY
+>>>>>>> a668da34fe87d3740cdf6a24aa57e4060a684ecd

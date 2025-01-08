@@ -4,13 +4,6 @@
 #include QMK_KEYBOARD_H
 #define ____ KC_TRNS
 
-#ifdef AUTO_SHIFT_ENABLE
-
-void keyboard_post_init_user(void) {
-	autoshift_disable();
-}
-#endif
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT(
@@ -81,20 +74,11 @@ static void print_status_narrow(void) {
         default:
             oled_write_P(PSTR("Undef"), false);
     }
-	
+
 	// Display capslock
     oled_advance_page(true);
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("Caps- lock"), led_usb_state.caps_lock);
-	
-#ifdef AUTO_SHIFT_ENABLE
-
-	bool autoshift = get_autoshift_state();
-	oled_advance_page(true);
-	oled_write_P(PSTR("Auto-Shift"), autoshift);
-	oled_advance_page(true);
-	
-#endif
 
 }
 
@@ -104,3 +88,26 @@ bool oled_task_user(void) {
 }
 
 #endif
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_BSPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+        case LT(2, KC_SPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_BSPC):
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}

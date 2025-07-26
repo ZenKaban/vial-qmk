@@ -25,3 +25,4 @@
 #ifdef CONSOLE_ENABLE
 #    undef NO_DEBUG
 #endif
+#define QUICK_TAP_TERM_PER_KEY

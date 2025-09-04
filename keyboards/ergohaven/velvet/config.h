@@ -1,1 +1,2 @@
 #define SELECT_SOFT_SERIAL_SPEED 5
+#define TAP_CODE_DELAY 1

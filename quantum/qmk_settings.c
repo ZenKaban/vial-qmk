@@ -318,13 +318,19 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     return QS_tapping_permissive_hold;
 }
 
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
-    return QS_tapping_hold_on_other_key_press;
-}
 
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-    return QS.quick_tap_term;
-}
+// bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+//     return !(QS.tapping & 2);
+// }
+//
+// uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+//     if (QS.tapping & 4) {
+//         return 0;
+//     } else {
+//         return QS.tapping_term;
+//     }
+// }
+
 
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     return QS_tapping_retro_tapping;

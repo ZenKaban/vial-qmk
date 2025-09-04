@@ -41,3 +41,27 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
   [3] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______)},
 };
 #endif
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_BSPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+        case LT(2, KC_SPC):
+            // Immediately select the hold action when another key is tapped.
+            return true;
+
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(1, KC_BSPC):
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}
